@@ -1,0 +1,13 @@
+.mat-elevation-z8{
+    background-color: rgb(194, 194, 194);
+    position: relative;
+    color: black;
+    height: 80vh;
+ }
+ img {
+    height: 15rem;
+ }
+ .header, .content{
+     margin-left: 5rem;
+     width: 90%;
+ }
