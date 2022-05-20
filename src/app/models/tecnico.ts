@@ -8,5 +8,4 @@ export interface Tecnico{
     perfis: string[];
     dataCriacao: any;
     
-
 }

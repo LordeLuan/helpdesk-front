@@ -15,5 +15,8 @@ export class TecnicoService {
     return this.http.get<Tecnico[]>(`${environment.urlAPI}/tecnicos`);
   }
 
+  create(tecnico:Tecnico) : Observable<Tecnico>{
+    return this.http.post<Tecnico>(`${environment.urlAPI}/tecnicos`,tecnico);
+  }
 
 }
