@@ -36,4 +36,9 @@ export class AuthenticationService {
     return false;
   }
 
+  // Limpa as informações de authenticação que constam no localStorage
+  logout(){
+    localStorage.clear();
+  }
+
 }
