@@ -38,13 +38,14 @@ export class TecnicoCreateComponent implements OnInit {
         this.toast.success("Técnico cadastrado com sucesso", "Cadastro");
         this.router.navigate(['tecnicos']);
       },
+       //Em caso de exceção
       (ex) => {
-        console.log(ex);
+        // Se a mensagem de exeção tiver o array erros, será enviado a mensagem do array no toast
         if (ex.error.erros) {
           ex.error.errors.array.forEach((element) => {
             this.toast.error(element.message, "Cadastro");
           });
-        } else {
+        } else { // envia a mensagem do campo erro 
           this.toast.error(ex.error.message);
         }
       }
@@ -52,12 +53,11 @@ export class TecnicoCreateComponent implements OnInit {
   }
 
   addPerfil(perfil: any) {
+    // Se o perfil clicado já existir no array ele será removido, se não ele será adicionado
     if (this.tecnico.perfis.includes(perfil)) {
       this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil));
-      console.log(this.tecnico.perfis);
     } else {
       this.tecnico.perfis.push(perfil);
-      console.log(this.tecnico.perfis);
     }
   }
 

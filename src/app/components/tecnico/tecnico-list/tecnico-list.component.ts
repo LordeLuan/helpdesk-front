@@ -14,7 +14,9 @@ export class TecnicoListComponent implements OnInit {
   // Recebe as informações da requisição de findAll
   ELEMENT_DATA: Tecnico[] = []
 
+  // Colunas mostradas na tabela
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'email', 'acoes'];
+  // Dados das colunas da tabela
   dataSource = new MatTableDataSource<Tecnico>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
