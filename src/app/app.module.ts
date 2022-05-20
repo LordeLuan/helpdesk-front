@@ -1,3 +1,4 @@
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -78,7 +79,7 @@ import { ToastrModule } from 'ngx-toastr';
         preventDuplicates: true,
       })
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
