@@ -1,23 +1,23 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { TecnicoService } from "./../../../services/tecnico.service";
-import { Tecnico } from "./../../../models/tecnico";
+import { ClienteService } from "../../../services/cliente.service";
+import { Cliente } from "../../../models/cliente";
 import { FormControl, Validators } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "app-tecnico-update",
-  templateUrl: "./tecnico-update.component.html",
-  styleUrls: ["./tecnico-update.component.css"],
+  selector: "app-cliente-update",
+  templateUrl: "./cliente-update.component.html",
+  styleUrls: ["./cliente-update.component.css"],
 })
-export class TecnicoUpdateComponent implements OnInit {
+export class ClienteUpdateComponent implements OnInit {
   // Requisitos para preenchimento dos campos
   nome: FormControl = new FormControl(null, Validators.minLength(4));
   cpf: FormControl = new FormControl(null, Validators.required);
   email: FormControl = new FormControl(null, Validators.email);
   senha: FormControl = new FormControl(null, Validators.minLength(6));
 
-  tecnico: Tecnico = {
+  cliente: Cliente = {
     id: "",
     nome: "",
     cpf: "",
@@ -30,30 +30,30 @@ export class TecnicoUpdateComponent implements OnInit {
   perfilAdmin: boolean;
 
   constructor(
-    private service: TecnicoService,
+    private service: ClienteService,
     private toast: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.tecnico.id = this.activatedRoute.snapshot.paramMap.get("id");
+    this.cliente.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.findById();
   }
 
   findById() {
-    this.service.fingById(this.tecnico.id).subscribe((response) => {
+    this.service.fingById(this.cliente.id).subscribe((response) => {
       // Zera a lista de perfis da resposta do método
       response.perfis = [];
-      this.tecnico = response;
+      this.cliente = response;
     });
   }
 
   update() {
-    this.service.update(this.tecnico).subscribe(
+    this.service.update(this.cliente).subscribe(
       (response) => {
-        this.toast.success("Técnico atualizado com sucesso", "Atualizar");
-        this.router.navigate(["tecnicos"]);
+        this.toast.success("Cliente atualizado com sucesso", "Atualizar");
+        this.router.navigate(["clientes"]);
       },
       //Em caso de exceção
       (ex) => {
@@ -70,8 +70,8 @@ export class TecnicoUpdateComponent implements OnInit {
     );
   }
 
-  verificaPerfilADMIN(tecnico: Tecnico): boolean {
-    if (this.tecnico.perfis.includes("ADMIN")) {
+  verificaPerfilADMIN(cliente: Cliente): boolean {
+    if (this.cliente.perfis.includes("ADMIN")) {
       this.perfilAdmin = true;
       return true;
     }
@@ -81,10 +81,10 @@ export class TecnicoUpdateComponent implements OnInit {
 
   addPerfil(perfil: any) {
     // Se o perfil clicado já existir no array ele será removido, se não ele será adicionado
-    if (this.tecnico.perfis.includes(perfil)) {
-      this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil));
+    if (this.cliente.perfis.includes(perfil)) {
+      this.cliente.perfis.splice(this.cliente.perfis.indexOf(perfil));
     } else {
-      this.tecnico.perfis.push(perfil);
+      this.cliente.perfis.push(perfil);
     }
   }
 

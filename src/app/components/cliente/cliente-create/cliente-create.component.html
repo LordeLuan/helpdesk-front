@@ -1,19 +1,18 @@
 <div class="container mat-elevation-z8">
     <form class="form">
  
-       <h1 class="fullWidth">Atualizar Técnico</h1>
+       <h1 class="fullWidth">Cadastrar Cliente</h1>
        <img class="fullWidth" src="assets/img/tecnico-create.svg" alt="Help Desk - Dicas de um DEV">
  
        <section class="section">
-          <mat-checkbox (click)="addPerfil(0)"  [checked]="perfilAdmin" class="margin" color="primary">Admin</mat-checkbox>
+          <mat-checkbox (click)="addPerfil(0)" class="margin" color="primary">Admin</mat-checkbox>
           <mat-checkbox (click)="addPerfil(1)" [checked]="true" class="margin" color="primary">Cliente</mat-checkbox>
-          <mat-checkbox (click)="addPerfil(2)" class="margin" color="primary">Tecnico</mat-checkbox>
         </section>
  
         <mat-form-field class="fullWidth" appearance="legacy">
           <mat-label>Nome</mat-label>
           <input 
-          [(ngModel)]="tecnico.nome"
+          [(ngModel)]="cliente.nome"
           name="nome"
           [formControl]="nome"
           required
@@ -26,7 +25,7 @@
         <mat-form-field class="fullWidth" appearance="legacy">
           <mat-label>CPF</mat-label>
           <input 
-          [(ngModel)]="tecnico.cpf"
+          [(ngModel)]="cliente.cpf"
           name="cpf"
           [formControl]="cpf"
           required
@@ -39,7 +38,7 @@
         <mat-form-field class="fullWidth" appearance="legacy">
           <mat-label>E-mail</mat-label>
           <input 
-          [(ngModel)]="tecnico.email"
+          [(ngModel)]="cliente.email"
           name="email"
           [formControl]="email"
           required
@@ -51,18 +50,18 @@
         <mat-form-field class="fullWidth" appearance="legacy">
           <mat-label>Senha</mat-label>
           <input 
-          [(ngModel)]="tecnico.senha"
+          [(ngModel)]="cliente.senha"
           name="senha"
           [formControl]="senha"
           required
           type="password" 
           matInput 
           placeholder="Ex.. 1234">
-          <mat-icon matSuffix>password</mat-icon>
+          <mat-icon matSuffix >password</mat-icon>
         </mat-form-field>
  
-        <button (click)="update()" [disabled]="!validaCampos()" class="fullWidth mat-elevation-z4" mat-flat-button >Atualizar</button>
-        <button routerLink="../../" class="fullWidth mat-elevation-z4" mat-stroked-button>Cancelar</button>
+        <button (click)="create()" [disabled]="!validaCampos()" class="fullWidth mat-elevation-z4" mat-flat-button >Cadastrar</button>
+        <button routerLink="../" class="fullWidth mat-elevation-z4" mat-stroked-button>Cancelar</button>
     </form>
  
     <p class="fullWidth">by Luan Lordello</p>
