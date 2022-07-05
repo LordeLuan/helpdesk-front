@@ -11,8 +11,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class ChamadoListComponent implements OnInit {
 
-  checked: false;
-
   ELEMENT_DATA: Chamado[] = []
   FILTERED_DATA: Chamado[] = []
 
