@@ -51,7 +51,7 @@
           name="tecnico"
           [formControl]="tecnico" 
           required>
-          <mat-option value="1">Validr</mat-option>
+          <mat-option *ngFor="let tec of tecnicos" value="{{tec.id}}">{{tec.nome}}</mat-option>
           </mat-select>
         </mat-form-field>
      </div>
@@ -64,7 +64,7 @@
           name="cliente"
           [formControl]="cliente"
           required>
-          <mat-option value="1">Validr</mat-option>
+          <mat-option *ngFor="let cli of clientes" value="{{cli.id}}">{{cli.nome}}</mat-option>
           </mat-select>
         </mat-form-field>
      </div>
@@ -77,7 +77,7 @@
          name="observacoes"
          required
          class="observacoes" 
-         [formControl]="descricao"
+         [formControl]="observacoes"
          matInput 
          placeholder="Ex. trocar bateria de notebook queimada..."></textarea>
        </mat-form-field>

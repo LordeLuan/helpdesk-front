@@ -16,6 +16,6 @@ export class ChamadoService {
   }
 
   create(chamado: Chamado): Observable<Chamado> {
-    return this.http.post<Chamado>(`${environment.urlAPI}/Chamados`, chamado);
+    return this.http.post<Chamado>(`${environment.urlAPI}/chamados`, chamado);
   }
 }
