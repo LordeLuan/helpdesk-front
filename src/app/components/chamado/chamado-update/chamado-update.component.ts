@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { TecnicoService } from './../../../services/tecnico.service';
 import { ClienteService } from './../../../services/cliente.service';
 import { Tecnico } from './../../../models/tecnico';
@@ -30,18 +31,27 @@ export class ChamadoUpdateComponent implements OnInit {
   cliente: FormControl = new FormControl(null, Validators.required);
 
   constructor(private chamadoService: ChamadoService,
-     private toasterService: ToastrService, private router: Router, private clienteService: ClienteService, private tecnicoService: TecnicoService) { }
+     private toasterService: ToastrService, private router: Router, private clienteService: ClienteService, private tecnicoService: TecnicoService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.chamado.id = this.route.snapshot.paramMap.get('id');
     this.findAllClientes();
     this.findAllTecnicos();
-
+    this.findById();
   }
 
-  create() {
-    this.chamadoService.create(this.chamado).subscribe(
+  findById(){
+    this.chamadoService.findById(this.chamado.id).subscribe(resposta =>{
+      this.chamado = resposta;
+    }, (ex) =>{
+      this.toasterService.error(ex.error.erros);
+    })
+  }
+
+  update() {
+    this.chamadoService.update(this.chamado).subscribe(
       (response) => {
-        this.toasterService.success("Chamado cadastrado com sucesso", "Chamado Cadastrado");
+        this.toasterService.success("Chamado atualizado com sucesso", "Chamado Atualizado");
         this.router.navigate(['chamados']);
       },
        //Em caso de exceção
@@ -73,5 +83,25 @@ export class ChamadoUpdateComponent implements OnInit {
 
   validaCampos():boolean{
     return this.cliente.valid && this.tecnico.valid && this.observacoes.valid && this.prioridade.valid && this.status.valid && this.titulo.valid;
+  }
+
+  retornaStatusString(status: any): string {
+    if(status == '0'){
+      return 'Aberto'
+    } else if(status == '1'){
+      return 'Andamento'
+    } else{
+      return 'Encerrado'
+    }
+  }
+
+    retornaPrioridadeString(prioridade: any): string {
+      if(prioridade == '0'){
+        return 'Baixa'
+      } else if(prioridade == '1'){
+        return 'Média'
+      } else{
+        return 'Alta'
+      }
   }
 }

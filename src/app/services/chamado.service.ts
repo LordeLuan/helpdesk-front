@@ -15,7 +15,15 @@ export class ChamadoService {
     return this.http.get<Chamado[]>(`${environment.urlAPI}/chamados`);
   }
 
+  findById(id:any): Observable<Chamado>{
+    return this.http.get<Chamado>(`${environment.urlAPI}/chamados/${id}`);
+  }
+
   create(chamado: Chamado): Observable<Chamado> {
     return this.http.post<Chamado>(`${environment.urlAPI}/chamados`, chamado);
+  }
+
+  update(chamado: Chamado): Observable<Chamado>{
+    return this.http.put<Chamado>(`${environment.urlAPI}/chamados/${chamado.id}`,chamado);
   }
 }
