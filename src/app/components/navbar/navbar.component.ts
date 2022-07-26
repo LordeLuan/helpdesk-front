@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     // Navega para a rota home - rota filha da navbar
-    this.router.navigate(['chamados/create'])
+    this.router.navigate(['chamados/update/1'])
   }
 
   logout(){
