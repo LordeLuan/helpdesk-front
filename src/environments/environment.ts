@@ -1,6 +1,6 @@
 
 export const environment = {
   production: false,
-  urlAPI : 'http://localhost:8080'
+  urlAPI : 'https://helpdesk-back-prods.herokuapp.com'
 };
 

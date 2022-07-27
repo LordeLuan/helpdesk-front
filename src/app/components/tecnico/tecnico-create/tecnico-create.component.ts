@@ -40,6 +40,7 @@ export class TecnicoCreateComponent implements OnInit {
       },
        //Em caso de exceção
       (ex) => {
+        console.log(ex)
         // Se a mensagem de exeção tiver o array erros, será enviado a mensagem do array no toast
         if (ex.error.erros) {
           ex.error.errors.array.forEach((element) => {
