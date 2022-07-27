@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlAPIProd : 'https://helpdesk-back-prods.herokuapp.com/'
+  urlAPI : 'https://helpdesk-back-prods.herokuapp.com'
 };
